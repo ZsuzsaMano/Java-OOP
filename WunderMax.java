@@ -6,7 +6,7 @@ public class WunderMax {
         int max = 0;
         int nr = 0;
         for (int i = 1; i <= 100; i++) {
-            int iterations = Wunder.iter(i);
+            int iterations = WunderTest.wunder(i);
             if (iterations > max) {
                 max = iterations;
                 nr = i;
