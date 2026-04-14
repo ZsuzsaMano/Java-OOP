@@ -38,4 +38,9 @@ public class WunderTest {
             }
         }
     }
+
+    public static void main(String[] args) {
+        int iter = wunderRec(5, 0);
+        System.out.println(iter);
+    }
 }
