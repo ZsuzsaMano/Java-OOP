@@ -7,12 +7,12 @@ public class Person {
         name = firstName + "," + lastName;
     }
 
-    String getFirstName() {
+    public String getFirstName() {
         int index = name.indexOf(',');
         return name.substring(0, index);
     }
 
-    String getLastName() {
+    public String getLastName() {
         int index = name.indexOf(',');
         return name.substring(index + 1);
     }
