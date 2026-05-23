@@ -2,7 +2,7 @@ package Vererbung;
 
 public class StapelTest {
     public static void main(String[] args) {
-        Stapel a = new Stapel();
+        Stapel2 a = new Stapel2();
         System.out.println(a.isEmpty());
         a.push(12);
         System.out.println(a.peek());
