@@ -1,49 +1,46 @@
-public class BinaryTree {
-    private BinaryNode root;
+public class BinaryTreeParam<T extends Comparable<T>> {
+    private BinaryNode<T> root;
 
-    public BinaryTree(int value) {
-        root = new BinaryNode(value);
+    public BinaryTreeParam(T value) {
+        root = new BinaryNode<T>(value);
     }
 
-    public BinaryTree() {
+    public BinaryTreeParam() {
     }
 
-    public boolean contains(int value) {
+    public boolean contains(T value) {
         if (root == null)
             return false;
         return root.contains(value);
     }
 
-    public void insert(int value) {
+    public void insert(T value) {
         if (root == null) {
-            root = new BinaryNode(value);
+            root = new BinaryNode<T>(value);
         } else {
             root.insert(value);
         }
     }
 
-    /*
-     * Die Methode inorder() gibt die im Baum gespeicherten Werte nach ihrer Größe
-     * sortiert aus, beginnend mit dem kleinsten Wert.
-     */
     public void inorder() {
         if (root == null)
             return;
         root.inorder();
     }
 
-    private static class BinaryNode {
-        private BinaryNode leftSon, rightSon;
-        private int value;
+    private static class BinaryNode<ET extends Comparable<ET>> {
+        private BinaryNode<ET> leftSon, rightSon;
+        private ET value;
 
-        public BinaryNode(int value) {
+        public BinaryNode(ET value) {
             this.value = value;
         }
 
-        public boolean contains(int v) {
-            if (v == value)
+        public boolean contains(ET v) {
+            int difference = v.compareTo(value);
+            if (difference == 0)
                 return true;
-            if (v < value) {
+            if (difference < 0) {
                 if (leftSon == null)
                     return false;
                 return leftSon.contains(v);
@@ -54,18 +51,19 @@ public class BinaryTree {
             }
         }
 
-        public void insert(int v) {
-            if (v == value)
+        public void insert(ET v) {
+            int difference = v.compareTo(value);
+            if (difference == 0)
                 return; // Knoten schon im Baum
-            if (v < value) {
+            if (difference < 0) {
                 if (leftSon == null) {
-                    leftSon = new BinaryNode(v);
+                    leftSon = new BinaryNode<ET>(v);
                 } else {
                     leftSon.insert(v);
                 }
             } else {
                 if (rightSon == null) {
-                    rightSon = new BinaryNode(v);
+                    rightSon = new BinaryNode<ET>(v);
                 } else {
                     rightSon.insert(v);
                 }

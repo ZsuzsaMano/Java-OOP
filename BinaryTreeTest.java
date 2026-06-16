@@ -7,5 +7,6 @@ public class BinaryTreeTest {
         myTree.insert(11);
         myTree.insert(10);
         myTree.inorder();
+
     }
 }
