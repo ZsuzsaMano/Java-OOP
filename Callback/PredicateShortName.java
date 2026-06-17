@@ -5,5 +5,4 @@ public class PredicateShortName implements FilterPredicate<Person> {
     public boolean isMatching(Person candidate) {
         return candidate.getName().length() < 5;
     }
-
 }
