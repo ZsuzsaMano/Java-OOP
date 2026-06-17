@@ -26,7 +26,35 @@ public class FilterTest {
         for (Person p : resultW) {
             System.out.println(p.getName());
         }
+        ArrayList<String> source2 = new ArrayList<String>();
+        source2.add("Her Reh");
+        source2.add("cat");
+        source2.add("Mamam");
 
+        Filter<String> stringFilter = new Filter<String>(source2);
+
+        // Lambda Ausdruck
+        List<String> resultP = stringFilter.filter(text -> {
+            StringBuilder sb = new StringBuilder(text);
+            String reversetext = sb.reverse().toString();
+            return text.equalsIgnoreCase(reversetext);
+        });
+        System.out.println("Palindroms: ");
+        for (String text : resultP) {
+            System.out.println(text);
+        }
+        // Anonym Klasse
+        FilterPredicate<String> isShortString = new FilterPredicate<String>() {
+            @Override
+            public boolean isMatching(String text) {
+                return text.length() < 5;
+            }
+        };
+        List<String> resultSh = stringFilter.filter(isShortString);
+        System.out.println("Short strings: ");
+        for (String text : resultSh) {
+            System.out.println(text);
+        }
     };
 
 }
