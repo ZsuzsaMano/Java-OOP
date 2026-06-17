@@ -13,4 +13,8 @@ public class Person {
         return name;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
 }
