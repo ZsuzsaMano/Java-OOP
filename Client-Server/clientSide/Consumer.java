@@ -1,0 +1,25 @@
+package clientSide;
+
+import java.rmi.RemoteException;
+import bothSides.*;
+
+class Consumer extends Thread {
+    private RingBuffer buffer;
+
+    Consumer(RingBuffer buffer) {
+        this.buffer = buffer;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Product product = buffer.getProduct();
+                sleep(250); // "Verbrauchszeit"
+            } catch (InterruptedException | RemoteException e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
+        }
+    }
+}
