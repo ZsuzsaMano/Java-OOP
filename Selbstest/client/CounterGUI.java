@@ -1,22 +1,27 @@
+package client;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import common.Counter;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.TextField;
 import java.awt.event.*;
+import java.rmi.RemoteException;
 
 public class CounterGUI {
     Counter counter;
 
-    public CounterGUI(Counter counter) {
+    public CounterGUI(Counter counter) throws RemoteException, InterruptedException {
         this.counter = counter;
         JFrame f = new JFrame("Counter");
         JPanel p = new JPanel();
         p.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
-        TextField text = new TextField(counter.toString());
+        TextField text = new TextField(counter.getValue());
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setLayout(new FlowLayout());
         JButton decrease = new JButton("<");
@@ -26,26 +31,37 @@ public class CounterGUI {
         decrease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                counter.decrement();
-                text.setText(counter.toString());
-
+                try {
+                    counter.decrement();
+                    text.setText(counter.getValue());
+                } catch (RemoteException | InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         increase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                counter.increment();
-                text.setText(counter.toString());
+                try {
+                    counter.increment();
+                    text.setText(counter.getValue());
+                } catch (RemoteException | InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                counter.reset();
-                text.setText(counter.toString());
-
+                try {
+                    counter.reset();
+                    text.setText(counter.getValue());
+                } catch (RemoteException | InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
+
         f.add(p);
         p.add(decrease);
         p.add(text);
