@@ -16,6 +16,10 @@ public class WunderClient {
                 String line = in.readLine();
                 System.out.println(line);
                 if (line.startsWith("FRAGE")) {
+                    String answer = wunderAnswer(line);
+                    System.out.println(answer);
+                    out.write(answer + "\n");
+                    out.flush();
 
                 }
 
@@ -27,5 +31,24 @@ public class WunderClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String wunderAnswer(String frage) {
+        System.out.println(frage.substring(5));
+        int nr = Integer.parseInt(frage.substring(5));
+        if (nr < 1) {
+            throw new IllegalArgumentException("this is not a Natürliche Zahl");
+        }
+        int i = 0;
+        while (nr != 1) {
+            if (nr % 2 == 0) {
+                nr = nr / 2;
+                i++;
+            } else {
+                nr = nr * 3 + 1;
+                i++;
+            }
+        }
+        return String.valueOf(i);
     }
 }
