@@ -1,4 +1,4 @@
-package s2;
+package s2.Printable;
 
 public class PrintableListTest {
     public static void main(String[] args) {

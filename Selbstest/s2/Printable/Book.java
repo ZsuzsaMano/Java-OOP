@@ -1,4 +1,4 @@
-package s2;
+package s2.Printable;
 
 public class Book implements Printable {
     private String title;

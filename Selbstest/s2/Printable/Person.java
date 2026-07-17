@@ -1,4 +1,4 @@
-package s2;
+package s2.Printable;
 
 public class Person implements Printable {
     private String name;
